@@ -63,6 +63,10 @@ class OrdArray {
             System.out.print(array[j] + " ");  // display it
         System.out.println("");
     }
+
+    /*public OrdArray merge(OrdArray firstArray, OrdArray secondArray) {
+
+    }*/
 }  // end class OrdArray
 
 class OrderedApp {
@@ -92,6 +96,23 @@ class OrderedApp {
         arr.delete(99);
         arr.delete(66);
 
-        arr.display();                 // display items again
+        arr.display();// display items again
+
+        OrdArray firstArray = new OrdArray(11);
+        for (int i = 0; i < 11 ; i++) {
+             int randomNumber = (int) (Math.random() * 100);
+             firstArray.insert(randomNumber);
+        }
+        System.out.println("First Array: ");
+        firstArray.display();
+        OrdArray secondArray = new OrdArray(21);
+        for (int i = 0; i < 21 ; i++) {
+            int randomNumber = (int) (Math.random() * 100);
+            secondArray.insert(randomNumber);
+        }
+        System.out.println("Second Array: ");
+        secondArray.display();
+
+
     }  // end main()
 }  // end class OrderedApp

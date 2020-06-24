@@ -75,6 +75,23 @@ class HighArray {
         return maxNumber;
     }
 
+    public void noDuplicates(){
+        int counter = 0;
+        for (int i = 0; i < array.length - 1; i++) {
+            int currentValue = array[i];
+            for (int j = i + 1; j < array.length - 1; j++) {
+                if (array[j] == currentValue){
+                    array[j] = -1;
+                    counter++;
+                }
+            }
+        }
+        for (int i = 0; i < counter; i++) {
+            delete(-1);
+        }
+
+    }
+
 }  // end class HighArray
 
 
@@ -86,12 +103,12 @@ class HighArrayApp {
 
         arr.insert(77);               // insert 9 items
         arr.insert(99);
-        arr.insert(44);
+        arr.insert(99);
         arr.insert(160);
-        arr.insert(91);
-        arr.insert(11);
         arr.insert(17);
-        arr.insert(66);
+        arr.insert(11);
+        arr.insert(11);
+        arr.insert(21);
         arr.insert(21);
 
         arr.display();                // display items
@@ -100,7 +117,7 @@ class HighArrayApp {
         if(arr.find(searchKey)) System.out.println("Found " + searchKey);
         else System.out.println("Can't find " + searchKey);
 
-        arr.delete(17);          // delete 3 items
+        arr.delete(77);          // delete 3 items
         arr.delete(55);
         arr.display();                // display items again
 
@@ -119,6 +136,9 @@ class HighArrayApp {
             int currentMaxNumber = arr.removeMax();
             sortedArray.insert(currentMaxNumber);
         }
+        sortedArray.display();
+
+        sortedArray.noDuplicates();
         sortedArray.display();
 
 
