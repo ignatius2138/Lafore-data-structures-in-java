@@ -1,0 +1,97 @@
+class OrdArray {
+    private long[] array;                 // ref to array a
+    private int numberOfElements;               // number of data items
+
+    public OrdArray(int max){         // constructor
+        array = new long[max];             // create array
+        numberOfElements = 0;
+    }
+
+    public int size() { return numberOfElements; }
+
+    public int find(long searchKey) {
+        int lowerBound = 0;
+        int upperBound = numberOfElements -1;
+        int curIn;
+
+        while(true) {
+            curIn = (lowerBound + upperBound ) / 2;
+            if(array[curIn]==searchKey)
+                return curIn;              // found it
+            else if(lowerBound > upperBound)
+                return numberOfElements;             // can't find it
+            else{                        // divide range
+                if(array[curIn] < searchKey)
+                    lowerBound = curIn + 1; // it's in upper half
+                else
+                    upperBound = curIn - 1; // it's in lower half
+            }  // end else divide range
+        }  // end while
+    }  // end find()
+
+    public void insert(long value){   // put element into array
+        int lowerBound = 0;
+        int upperBound = numberOfElements - 1;
+        int j = 0;
+        while (lowerBound <= upperBound) {
+            j = (lowerBound + upperBound) / 2;
+            if (value > array[j]) {
+                lowerBound = j + 1;
+                j++;
+            } else upperBound = j - 1;
+        }
+        for(int k = numberOfElements; k>j; k--)    // move bigger ones up
+            array[k] = array[k-1];
+        array[j] = value;                  // insert it
+        numberOfElements++;                      // increment size
+    }  // end insert()
+
+    public boolean delete(long value) {
+        int j = find(value);
+        if(j== numberOfElements)                  // can't find it
+            return false;
+        else{                       // found it
+            for(int k = j; k< numberOfElements; k++) // move bigger ones down
+                array[k] = array[k+1];
+            numberOfElements--;                   // decrement size
+            return true;
+        }
+    }  // end delete()
+
+    public void display(){            // displays array contents
+        for(int j = 0; j< numberOfElements; j++)       // for each element,
+            System.out.print(array[j] + " ");  // display it
+        System.out.println("");
+    }
+}  // end class OrdArray
+
+class OrderedApp {
+    public static void main(String[] args) {
+        int maxSize = 100;             // array size
+        OrdArray arr;                  // reference to array
+        arr = new OrdArray(maxSize);   // create the array
+
+        arr.insert(77);                // insert 10 items
+        arr.insert(99);
+        arr.insert(44);
+        arr.insert(55);
+        arr.insert(22);
+        arr.insert(88);
+        arr.insert(11);
+        arr.insert(0);
+        arr.insert(66);
+        arr.insert(33);
+
+        int searchKey = 77;            // search for item
+        if(arr.find(searchKey) != arr.size()) System.out.println("Found " + searchKey);
+        else System.out.println("Can't find " + searchKey);
+        arr.display();                 // display items
+
+        arr.delete(0);                // delete 3 items
+        arr.delete(55);
+        arr.delete(99);
+        arr.delete(66);
+
+        arr.display();                 // display items again
+    }  // end main()
+}  // end class OrderedApp
