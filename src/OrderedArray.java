@@ -64,8 +64,21 @@ class OrdArray {
         System.out.println("");
     }
 
-    /*public OrdArray merge(OrdArray firstArray, OrdArray secondArray) {
+    /*public void merge(OrdArray firstArray, OrdArray secondArray, int firstArrayLength, int secondArrayLength) {
+        int i = 0, j = 0, k = 0;
 
+        while (i<firstArrayLength && j <secondArrayLength) {
+            if (firstArray[i] < arr2[j])
+                arr3[k++] = firstArray[i++];
+            else
+                arr3[k++] = arr2[j++];
+        }
+
+        while (i < firstArrayLength)
+            arr3[k++] = firstArray[i++];
+
+        while (j < n2)
+            arr3[k++] = arr2[j++];
     }*/
 }  // end class OrdArray
 
