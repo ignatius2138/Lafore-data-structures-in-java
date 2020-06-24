@@ -27,15 +27,15 @@ class HighArray {
         numberOfElementsInArray++;                      // increment size
     }
 
-    public boolean delete(int value){
+    public boolean delete(long value) {
         int j;
         for(j=0; j<numberOfElementsInArray; j++)        // look for it
-            if(value == array[j] )
+            if( value == array[j] )
                 break;
-        if(j== numberOfElementsInArray)                  // can't find it
+        if(j==numberOfElementsInArray)                  // can't find it
             return false;
-        else{                           // found it
-            for(int k = j; k<numberOfElementsInArray; k++) // move higher ones down
+        else{                        // found it
+            for(int k=j; k<numberOfElementsInArray; k++) // move higher ones down
                 array[k] = array[k+1];
             numberOfElementsInArray--;                   // decrement size
             return true;
@@ -88,11 +88,11 @@ class HighArrayApp {
         arr.insert(99);
         arr.insert(44);
         arr.insert(160);
-        arr.insert(22);
-        arr.insert(88);
+        arr.insert(91);
         arr.insert(11);
         arr.insert(17);
         arr.insert(66);
+        arr.insert(21);
 
         arr.display();                // display items
 
@@ -102,7 +102,6 @@ class HighArrayApp {
 
         arr.delete(17);          // delete 3 items
         arr.delete(55);
-        arr.delete(99);
         arr.display();                // display items again
 
         System.out.println("Max number in an array is: " + arr.getMax());
@@ -110,18 +109,17 @@ class HighArrayApp {
         arr.display();
 
         arr.insert(15);
-        arr.insert(40);
         arr.insert(999);
+        System.out.println("Unsorted array: ");
         arr.display();
         System.out.println("Sorting array...");
-        int sortedArray[] = new int[arr.getNumberOfElementsInArray() + 1];
-        int arrayLength = arr.getNumberOfElementsInArray() + 1;
+        int arrayLength = arr.getNumberOfElementsInArray();
+        HighArray sortedArray = new HighArray(maxSize);
         for (int x = 0; x <arrayLength; x++ ) {
-            sortedArray[x] = arr.removeMax();
+            int currentMaxNumber = arr.removeMax();
+            sortedArray.insert(currentMaxNumber);
         }
-        for (int z: sortedArray) {
-            System.out.println(z);
-        }
+        sortedArray.display();
 
 
     }  // end main()
