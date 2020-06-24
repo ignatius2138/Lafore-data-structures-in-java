@@ -1,6 +1,6 @@
 class OrdArray {
-    private long[] array;                 // ref to array a
-    private int numberOfElements;               // number of data items
+    private final long[] array;                 // ref to array a
+    private int numberOfElements;         // number of data items
 
     public OrdArray(int max){         // constructor
         array = new long[max];             // create array
@@ -8,6 +8,14 @@ class OrdArray {
     }
 
     public int size() { return numberOfElements; }
+
+    public long getValueAt(int index) {
+        return array[index];
+    }
+
+    public void setValueAt(int index, long value) {
+        array[index] = value;
+    }
 
     public int find(long searchKey) {
         int lowerBound = 0;
@@ -26,8 +34,8 @@ class OrdArray {
                 else
                     upperBound = curIn - 1; // it's in lower half
             }  // end else divide range
-        }  // end while
-    }  // end find()
+        }
+    }
 
     public void insert(long value){   // put element into array
         int lowerBound = 0;
@@ -44,7 +52,7 @@ class OrdArray {
             array[k] = array[k-1];
         array[j] = value;                  // insert it
         numberOfElements++;                      // increment size
-    }  // end insert()
+    }
 
     public boolean delete(long value) {
         int j = find(value);
@@ -56,7 +64,7 @@ class OrdArray {
             numberOfElements--;                   // decrement size
             return true;
         }
-    }  // end delete()
+    }
 
     public void display(){            // displays array contents
         for(int j = 0; j< numberOfElements; j++)       // for each element,
@@ -64,23 +72,30 @@ class OrdArray {
         System.out.println("");
     }
 
-    /*public void merge(OrdArray firstArray, OrdArray secondArray, int firstArrayLength, int secondArrayLength) {
-        int i = 0, j = 0, k = 0;
-
+    public static OrdArray merge(OrdArray firstArray, OrdArray secondArray, int firstArrayLength, int secondArrayLength) {
+        int i = 0, j = 0, k = 0;//Indexes for arrays: firstArray - i, second j, merged - k
+        OrdArray mergedArray = new OrdArray(firstArrayLength + secondArrayLength);
         while (i<firstArrayLength && j <secondArrayLength) {
-            if (firstArray[i] < arr2[j])
-                arr3[k++] = firstArray[i++];
-            else
-                arr3[k++] = arr2[j++];
+            if (firstArray.getValueAt(i) < secondArray.getValueAt(j)) {
+                mergedArray.setValueAt(k++, firstArray.getValueAt(i++));
+            }
+            else {
+                mergedArray.setValueAt(k++, secondArray.getValueAt(j++));
+            }
+            mergedArray.numberOfElements++;
+
         }
-
-        while (i < firstArrayLength)
-            arr3[k++] = firstArray[i++];
-
-        while (j < n2)
-            arr3[k++] = arr2[j++];
-    }*/
-}  // end class OrdArray
+        while (i < firstArrayLength){
+            mergedArray.setValueAt(k++, firstArray.getValueAt(i++));
+            mergedArray.numberOfElements++;
+        }
+        while (j < secondArrayLength){
+            mergedArray.setValueAt(k++, secondArray.getValueAt(j++));
+            mergedArray.numberOfElements++;
+        }
+        return mergedArray;
+    }
+}
 
 class OrderedApp {
     public static void main(String[] args) {
@@ -125,7 +140,7 @@ class OrderedApp {
         }
         System.out.println("Second Array: ");
         secondArray.display();
-
-
-    }  // end main()
-}  // end class OrderedApp
+        System.out.println("Merged Array is: ");
+        OrdArray.merge(firstArray, secondArray, firstArray.size(), secondArray.size()).display();
+    }
+}
