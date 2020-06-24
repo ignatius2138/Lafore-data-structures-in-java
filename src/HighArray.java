@@ -23,7 +23,7 @@ class HighArray {
         numberOfElementsInArray++;                      // increment size
     }
 
-    public boolean delete(long value){
+    public boolean delete(int value){
         int j;
         for(j=0; j<numberOfElementsInArray; j++)        // look for it
             if(value == array[j] )
@@ -55,6 +55,19 @@ class HighArray {
             }
         }
         return maxNumber;
+    }
+
+    public void removeMax(){
+        int maxNumber = 0;
+        if (numberOfElementsInArray == 0) {
+            System.out.println("Array is empty");
+        }
+        else {
+            for (int x:array) {
+                if (x > maxNumber) maxNumber = x;
+            }
+        }
+        delete(maxNumber);
     }
 
 }  // end class HighArray
@@ -89,5 +102,8 @@ class HighArrayApp {
 
         arr.display();                // display items again
         System.out.println("Max number in an array is: " + arr.getMax());
+        arr.removeMax();
+        arr.display();
+
     }  // end main()
 }  // end class HighArrayApp
