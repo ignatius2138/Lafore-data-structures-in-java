@@ -1,3 +1,5 @@
+package Chapter2Arrays;
+
 class OrdArray {
     private final long[] array;                 // ref to array a
     private int numberOfElements;         // number of data items

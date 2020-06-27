@@ -1,3 +1,5 @@
+package Chapter2Arrays;
+
 class HighArray {
     private final int[] array;                 // ref to array a
     private int numberOfElementsInArray;               // number of data items
