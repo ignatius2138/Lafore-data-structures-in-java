@@ -31,7 +31,7 @@ class ArrayBub {
                     swap(in, in + 1);
                 }// swap them
             }// inner loop (forward)
-            for (int i = out - 1; i > 0; i--) {
+            for (int i = out - 1; i > 0; i--) {//Task 1
                 if (array[i] < array[i - 1]) {
                     swap(i, i - 1);
                 }
