@@ -42,7 +42,7 @@ class ArrayIns {
         int copiesCounter = 0;
         int comparisonsCounter = 0;
 
-        for (out = 1; out < numberOfElements; out++) {
+        /*for (out = 1; out < numberOfElements; out++) {
             int temp = array[out];
             copiesCounter++;
             in = out;
@@ -55,6 +55,19 @@ class ArrayIns {
             if (in != 0) comparisonsCounter++; // captures last unsuccessful comparison
             array[in] = temp;
             copiesCounter++;
+        }*/
+        for (out = 1; out < numberOfElements ; out++) {
+            int temp = array[out];
+            in = out;
+            while (in > 0) {
+                comparisonsCounter++;
+                if (array[in - 1] >= temp) {
+                    array[in] = array[in - 1];
+                    in--;
+                    copiesCounter++;
+                } else break;
+            }
+            array[in] = temp;
         }
         System.out.println("Copies: " + copiesCounter + ". Comparisons: " + comparisonsCounter);
     }
@@ -103,9 +116,10 @@ class InsertSortApp {
         ArrayIns arr;                 // reference to array
         arr = new ArrayIns(maxSize);  // create the array
 
-        arr.insert(77);               // insert 10 items
-        arr.insert(99);
-        arr.insert(44);
+        arr.insert(1);               // insert 10 items
+        arr.insert(2);
+        arr.insert(4);
+        arr.insert(3);
         /*arr.insert(44);
         arr.insert(0);
         arr.insert(21);
