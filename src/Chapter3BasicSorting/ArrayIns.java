@@ -36,17 +36,27 @@ class ArrayIns {
     }
 
     //--------------------------------------------------------------
-    public void insertionSort() {
+    public void insertionSort() {// Task 5
+
         int in, out;
-        for (out = 1; out < numberOfElements; out++) {    // out is dividing line
-            int temp = array[out];            // remove marked item
-            in = out;                      // start shifts at out
-            while (in > 0 && array[in - 1] >= temp) {// until one is smaller,
-                array[in] = array[in - 1];            // shift item to right
-                --in;                       // go left one position
+        int copiesCounter = 0;
+        int comparisonsCounter = 0;
+
+        for (out = 1; out < numberOfElements; out++) {
+            int temp = array[out];
+            copiesCounter++;
+            in = out;
+            while (in > 0 && array[in - 1] >= temp) {
+                array[in] = array[in - 1];
+                --in;
+                copiesCounter++;
+                comparisonsCounter++;
             }
-            array[in] = temp;                  // insert marked item
+            if (in != 0) comparisonsCounter++; // captures last unsuccessful comparison
+            array[in] = temp;
+            copiesCounter++;
         }
+        System.out.println("Copies: " + copiesCounter + ". Comparisons: " + comparisonsCounter);
     }
 
     //--------------------------------------------------------------
@@ -63,7 +73,7 @@ class ArrayIns {
 
         // Start traversing elements
         int tempArrayIndex = 0;
-        for (int i = 0; i < numberOfElements - 1; i++){
+        for (int i = 0; i < numberOfElements - 1; i++) {
             // If current element is not equal
             // to next element then store that
             // current element
@@ -96,7 +106,7 @@ class InsertSortApp {
         arr.insert(77);               // insert 10 items
         arr.insert(99);
         arr.insert(44);
-        arr.insert(44);
+        /*arr.insert(44);
         arr.insert(0);
         arr.insert(21);
         arr.insert(77);
@@ -106,7 +116,7 @@ class InsertSortApp {
         arr.insert(33);
         arr.insert(99);
         arr.insert(15);
-        arr.insert(8);
+        arr.insert(8);*/
 
         arr.display();                // display items
 
