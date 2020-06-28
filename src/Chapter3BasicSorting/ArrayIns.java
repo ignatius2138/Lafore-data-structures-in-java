@@ -1,8 +1,5 @@
 package Chapter3BasicSorting;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 // insertSort.java
 // demonstrates insertion sort
 // to run this program: C>java InsertSortApp
@@ -61,7 +58,7 @@ class ArrayIns {
         } else return (array[middle] + array[middle - 1]) / 2;
     }
 
-    public void noDuplicates() {
+    public void noDuplicates() {//Task 3
         int[] temp = new int[numberOfElements];
 
         // Start traversing elements
@@ -78,7 +75,7 @@ class ArrayIns {
         }
 
         // Store the last element as whether
-        // it is unique or repeated, it hasn't
+        // it is unique or repeated, it hasn't been
         // stored previously
         temp[tempArrayIndex++] = array[numberOfElements - 1];
 

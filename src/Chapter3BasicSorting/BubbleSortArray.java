@@ -24,7 +24,7 @@ class ArrayBub {
     }
 
     public void bubbleSort() {
-        int out, in, out2;
+        int out, in;
         for (out = numberOfElements - 1; out > 1; out--) {
             for (in = 0; in < out; in++) {
                 if (array[in] > array[in + 1]) {       // out of order?
@@ -43,6 +43,25 @@ class ArrayBub {
         long temp = array[one];
         array[one] = array[two];
         array[two] = temp;
+    }
+
+    public void oddEvenSort() {//Task 4
+        boolean sorted = false;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 1; i < array.length - 1; i += 2) {
+                if (array[ i ] > array[ i + 1 ]) {
+                    swap(i , i + 1 );
+                    sorted = false;
+                }
+            }
+            for (int i = 0; i < array.length - 1; i += 2) {
+                if (array[ i ] > array[ i + 1 ]) {
+                    swap(i , i + 1 );
+                    sorted = false;
+                }
+            }
+        }
     }
 
 }
@@ -66,7 +85,7 @@ class BubbleSortApp {
 
         arr.display();                // display items
 
-        arr.bubbleSort();             // bubble sort them
+        arr.oddEvenSort();             // bubble sort them
 
         arr.display();                // display them again
     }  // end main()
