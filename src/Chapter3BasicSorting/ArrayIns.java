@@ -56,7 +56,7 @@ class ArrayIns {
             array[in] = temp;
             copiesCounter++;
         }*/
-        for (out = 1; out < numberOfElements ; out++) {
+        for (out = 1; out < numberOfElements; out++) {
             int temp = array[out];
             in = out;
             while (in > 0) {
@@ -70,6 +70,42 @@ class ArrayIns {
             array[in] = temp;
         }
         System.out.println("Copies: " + copiesCounter + ". Comparisons: " + comparisonsCounter);
+    }
+
+    public void noDuplicatesInsertionSort() {//Task 6
+        int in, out;
+        int numberOfDuplicates = 0;
+        for (out = 1; out < numberOfElements; out++) { // out - разделительный маркер
+            int temp = array[out]; // Скопировать помеченный элемент
+            in = out; // Начать перемещения с out
+            while (in > 0 && array[in - 1] >= temp) { // Пока не найден меньший элемент
+                if (temp == array[in - 1]) {
+                    temp = -1;
+                }
+                array[in] = array[in - 1]; // Сдвинуть элемент вправо
+                --in; // Перейти на одну позицию влево
+            }
+            array[in] = temp; // Вставить помеченный элемент
+        }
+        removeDuplicatesFromArray(getNumberOfDuplicates(numberOfDuplicates));
+    }
+
+    private int getNumberOfDuplicates(int numberOfDuplicates) {
+        for (int x: array) {
+            if (x == -1) {
+                numberOfDuplicates++;
+            }
+        }
+        return numberOfDuplicates;
+    }
+
+    private void removeDuplicatesFromArray(int numberOfDuplicates) {
+        if (numberOfDuplicates != 0) {
+            for (int i = numberOfDuplicates; i < numberOfElements; i++) {
+                array[i - numberOfDuplicates] = array[i];
+            }
+        }
+        numberOfElements -= numberOfDuplicates;
     }
 
     //--------------------------------------------------------------
@@ -94,7 +130,6 @@ class ArrayIns {
                 temp[tempArrayIndex] = array[i];
                 tempArrayIndex++;
             }
-
         }
 
         // Store the last element as whether
@@ -112,34 +147,33 @@ class ArrayIns {
 ////////////////////////////////////////////////////////////////
 class InsertSortApp {
     public static void main(String[] args) {
-        int maxSize = 100;            // array size
+        int maxSize = 19;            // array size
         ArrayIns arr;                 // reference to array
         arr = new ArrayIns(maxSize);  // create the array
 
-        arr.insert(1);               // insert 10 items
-        arr.insert(2);
+        arr.insert(10);               // insert 10 items
+        arr.insert(9);
+        arr.insert(8);
+        arr.insert(6);
+        arr.insert(6);
+        arr.insert(5);
         arr.insert(4);
         arr.insert(3);
-        /*arr.insert(44);
-        arr.insert(0);
+        arr.insert(5);
+        arr.insert(10);
+        arr.insert(6);
         arr.insert(21);
-        arr.insert(77);
-        arr.insert(11);
-        arr.insert(0);
-        arr.insert(77);
-        arr.insert(33);
-        arr.insert(99);
-        arr.insert(15);
-        arr.insert(8);*/
+        arr.insert(9);
+        arr.insert(9);
 
         arr.display();                // display items
 
-        arr.insertionSort();          // insertion-sort them
+        arr.noDuplicatesInsertionSort();          // insertion-sort them
 
         arr.display();// display them again
         System.out.println("Median of an array is: " + arr.median());
-        arr.noDuplicates();
-        arr.display();
+        //arr.noDuplicates();
+        //arr.display();
 
     }  // end main()
 }  // end class InsertSortApp
