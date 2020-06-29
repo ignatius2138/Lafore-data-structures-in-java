@@ -74,7 +74,6 @@ class ArrayIns {
 
     public void noDuplicatesInsertionSort() {//Task 6
         int in, out;
-        int numberOfDuplicates = 0;
         for (out = 1; out < numberOfElements; out++) { // out - разделительный маркер
             int temp = array[out]; // Скопировать помеченный элемент
             in = out; // Начать перемещения с out
@@ -87,10 +86,11 @@ class ArrayIns {
             }
             array[in] = temp; // Вставить помеченный элемент
         }
-        removeDuplicatesFromArray(getNumberOfDuplicates(numberOfDuplicates));
+        removeDuplicatesFromArray(getNumberOfDuplicates());
     }
 
-    private int getNumberOfDuplicates(int numberOfDuplicates) {
+    private int getNumberOfDuplicates() {
+        int numberOfDuplicates = 0;
         for (int x: array) {
             if (x == -1) {
                 numberOfDuplicates++;
