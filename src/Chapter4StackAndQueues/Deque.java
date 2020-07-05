@@ -58,14 +58,14 @@ class Deque {
     }
 
     public void displayDequeContents() {
-        StringBuilder contents = new StringBuilder(" ");
+        StringBuilder contents = new StringBuilder("");
         if (numberOfItems == 0) {
             contents = new StringBuilder("Queue is empty");
         } else {
-            int j = left;
+            int displayedElementPosition = left;
             for (int i = 0; i < numberOfItems; i++) {
-                contents.append(queueArray[j++]).append(" ");
-                if (j == maxSize) j = 0;
+                contents.append(queueArray[displayedElementPosition++]).append(" ");
+                if (displayedElementPosition == maxSize) displayedElementPosition = 0;
             }
         }
         System.out.println(contents);
@@ -82,6 +82,44 @@ class Deque {
     public int size() {
         return numberOfItems;
     }
+
+    public long peekRight() {
+        return queueArray[right];
+    }
+
+}
+
+class StackUsingDeque {
+    private final Deque dequeStack;
+
+    public StackUsingDeque(int maxSize) {
+        dequeStack = new Deque(maxSize);
+    }
+
+    public void push(long newElement) {
+        dequeStack.insertRight(newElement);
+    }
+
+    public void pop() {
+        dequeStack.removeRight();
+    }
+
+    public long peek() {
+        return dequeStack.peekRight();
+    }
+
+    public boolean isEmpty() {
+        return dequeStack.isEmpty();
+    }
+
+    public boolean isFull() {
+        return dequeStack.isFull();
+    }
+
+    public void show() {
+        dequeStack.displayDequeContents();
+    }
+
 }
 
 class DequeApp {
@@ -97,6 +135,17 @@ class DequeApp {
         deque.removeLeft();
         deque.removeRight();
         deque.removeRight();
+        System.out.println(deque.size());
         deque.displayDequeContents();
+
+        StackUsingDeque stackUsingDeque = new StackUsingDeque(5);
+        stackUsingDeque.push(5);
+        stackUsingDeque.push(0);
+        stackUsingDeque.push(17);
+        stackUsingDeque.show();
+        stackUsingDeque.pop();
+        stackUsingDeque.show();
+        stackUsingDeque.push(100500);
+        System.out.println(stackUsingDeque.peek());
     }
 }
