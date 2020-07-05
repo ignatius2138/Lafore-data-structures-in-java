@@ -1,6 +1,6 @@
 package Chapter4StackAndQueues;
 
-class Deque {
+class Deque {//Task 2
     private final int maxSize;
     private final long[] queueArray;
     private int left;
@@ -89,7 +89,7 @@ class Deque {
 
 }
 
-class StackUsingDeque {
+class StackUsingDeque {//Task 3
     private final Deque dequeStack;
 
     public StackUsingDeque(int maxSize) {
