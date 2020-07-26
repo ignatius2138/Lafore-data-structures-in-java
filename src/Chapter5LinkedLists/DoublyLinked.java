@@ -164,24 +164,46 @@ class DoublyLinkedList {
 // -------------------------------------------------------------
 } // Конец класса DoublyLinkedList
 
+class Deque {
+    private DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+
+    public void insertLeft(long item) {
+        doublyLinkedList.insertFirst(item);
+    }
+
+    public void insertRight(long item) {
+        doublyLinkedList.insertLast(item);
+    }
+
+    public long removeLeft() {
+        return doublyLinkedList.deleteFirst().dData;
+    }
+
+    public long removeRight() {
+        return doublyLinkedList.deleteLast().dData;
+    }
+
+    public boolean isEmpty() {
+        return doublyLinkedList.isEmpty();
+    }
+
+    public void display() {
+        String s = "Queue contents (left --> right): ";
+        if (!isEmpty()) {
+            doublyLinkedList.displayForward();
+        }
+    }
+}
+
+
 ////////////////////////////////////////////////////////////////
 class DoublyLinkedApp {
     public static void main(String[] args) { // Создание нового списка
-        DoublyLinkedList theList = new DoublyLinkedList();
-        theList.insertFirst(22); // Вставка в начале
-        theList.insertFirst(44);
-        theList.insertFirst(66);
-        theList.insertLast(11); // Вставка в конце
-        theList.insertLast(33);
-        theList.insertLast(55);
-        theList.displayForward(); // Вывод в прямом направлении
-        theList.displayBackward(); // Вывод в обратном направлении
-        theList.deleteFirst(); // Удаление первого элемента
-        theList.deleteLast(); // Удаление последнего элемента
-        theList.deleteKey(11); // Удаление элемента с ключом 11
-        theList.displayForward(); // Вывод в прямом направлении
-        theList.insertAfter(22, 77); // Вставка 77 после 22
-        theList.insertAfter(33, 88); // Вставка 88 после 33
-        theList.displayForward(); // Вывод в прямом направлении
+        Deque deque = new Deque();
+        deque.insertLeft(15);
+        deque.insertRight(99);
+        deque.insertLeft(1);
+        deque.insertLeft(77);
+        deque.display();
     }
 } // Конец класса DoublyLinke
