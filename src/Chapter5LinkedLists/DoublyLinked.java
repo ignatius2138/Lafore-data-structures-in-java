@@ -164,8 +164,8 @@ class DoublyLinkedList {
 // -------------------------------------------------------------
 } // Конец класса DoublyLinkedList
 
-class Deque {
-    private DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+class Deque {//Task 2
+    private final DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
 
     public void insertLeft(long item) {
         doublyLinkedList.insertFirst(item);
