@@ -54,7 +54,7 @@ class HashTable {
         }
         // There is no remaining part if count is divisible by groupsize.
         if (keyDigitCount % groupSize != 0) {
-            String remainingPart = keyString.substring(i - groupSize, keyString.length());
+            String remainingPart = keyString.substring(i - groupSize);
             groupSum += Integer.parseInt(remainingPart);
         }
         return groupSum % arraySize;
